@@ -23,11 +23,21 @@ void Fulling(Book *l) {
 	}
 }
 
+void PrintLibrary(Book l[]) {
+	for (int i = 0; i < 10; i++) {
+		cout << "Book" << i + 1 << endl;
+		cout << "Name: " << l[i].name << endl;
+		cout << "Author: " << l[i].author << endl;
+		cout << "Publishing houes: " << l[i].publishing << endl;
+		cout << "Genre: " << l[i].genre << endl;
 
+	}
+}
 
 int main() {
 	Book library[10];
 	Fulling(library);
+	PrintLibrary(library);
 	
 return 0;
 }
