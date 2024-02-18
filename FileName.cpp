@@ -10,7 +10,24 @@ struct Book {
 	char genre[10];
 };
 
-int main() {
+void Fulling(Book *l) {
+	for (int i = 0; i < 10; i++) {
+		cout << "Enter name -";
+		cin.getline(l[i].name, 50);
+		cout  <<"Enter author -";
+		cin.getline(l[i].author, 20);
+		cout  << "Enter publishing house -";
+		cin.getline(l[i].publishing, 20);
+		cout  << "Enter genre -";
+		cin.getline(l[i].genre, 10);
+	}
+}
 
-	return 0;
+
+
+int main() {
+	Book library[10];
+	Fulling(library);
+	
+return 0;
 }
