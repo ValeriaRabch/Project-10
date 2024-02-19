@@ -11,7 +11,7 @@ struct Book {
 };
 
 void Fulling(Book *l) {
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 2; i++) {
 		cout << "Enter name -";
 		cin.getline(l[i].name, 50);
 		cout  <<"Enter author -";
@@ -49,16 +49,53 @@ void Change(Book *l, int index, int a, char text[]) {   //1
 	}
 }
 
+void SearchingAutor(Book l[], char author[], int *index) {    //3
+	int  y = 0;
+	for (int i = 0; i < 10; i++) {
+		if (strcmp(l[i].author,author)==0) {
+			index[y] = i; y++;
+		}
+	}
+	index[y] = -1;
+}
+
+void SearchingName(Book l[], char author[], int* index) {    //4
+	int  y = 0;
+	for (int i = 0; i < 10; i++) {
+		if (strcmp(l[i].name, author) == 0) {
+			index[y] = i; y++;
+		}
+	}
+	index[y] = -1;
+}
+
+void Print(int index[], Book l[]) {           //3
+	for (int i = 0; index[i] != -1; i++) {
+		cout << "Book" << index[i] + 1 << endl;
+		cout << "Name: " << l[index[i]].name << endl;
+		cout << "Author: " << l[index[i]].author << endl;
+		cout << "Publishing houes: " << l[index[i]].publishing << endl;
+		cout << "Genre: " << l[index[i]].genre << endl;
+	}
+}
+
 int main() {
 	Book library[10];
 	Fulling(library);
 	PrintLibrary(library);
-	int index, a; char arr[50];
+	/*int index, a; char arr[50];
 	cout << "Chose book that you will change"; cin >> index;
 	cout << "Chose \n1 - name \n2 - author \n3 - publishing \n4 - genre"; cin >> a;
 	cout << "Enter "; cin >> arr;
 	Change(library, index-1, a, arr);
-	PrintLibrary(library);
+	PrintLibrary(library);*/
+
+	char t[20];
+	int index[11];
+	cout << "Which author's book is searching?"; cin >> t;
+	//SearchingAutor(library, t, index);
+	SearchingName(library, t, index);
+	Print(index, library);
 	
 return 0;
 }
