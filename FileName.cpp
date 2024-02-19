@@ -69,7 +69,7 @@ void SearchingName(Book l[], char author[], int* index) {    //4
 	index[y] = -1;
 }
 
-void Print(int index[], Book l[]) {           //3
+void Print(int index[], Book l[]) {           //3,4
 	for (int i = 0; index[i] != -1; i++) {
 		cout << "Book" << index[i] + 1 << endl;
 		cout << "Name: " << l[index[i]].name << endl;
