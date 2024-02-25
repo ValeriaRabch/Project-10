@@ -11,7 +11,7 @@ struct Book {
 };
 
 void Fulling(Book* l) {
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 10; i++) {
 		cout << "Enter name -";
 		cin.getline(l[i].name, 50);
 		cout << "Enter author -";
@@ -24,7 +24,7 @@ void Fulling(Book* l) {
 }
 
 void PrintLibrary(Book l[]) {         //2
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 10; i++) {
 		cout << "Name: " << l[i].name << endl;
 		cout << "Author: " << l[i].author << endl;
 		cout << "Publishing houes: " << l[i].publishing << endl;
@@ -58,7 +58,7 @@ void Print(int index[], Book l[]) {           //3,4
 	}
 }
 
-void SearchingAutor(Book l[], char author[], int* index) {    //3
+void SearchingAutor(Book l[], char author[], int *index) {    //3
 	int  y = 0;
 	for (int i = 0; i < 10; i++) {
 		if (strcmp(l[i].author, author) == 0) {
@@ -80,8 +80,8 @@ void SearchingName(Book l[], char author[], int* index) {    //4
 
 Book* SortingName(Book l[]) {       //5
 	Book a;
-	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 5; j++) {
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
 			if (strcmp(l[j].name, l[j + 1].name) == 1) {
 				strcpy(a.name, l[j].name);
 				strcpy(a.author, l[j].author);
@@ -105,8 +105,8 @@ Book* SortingName(Book l[]) {       //5
 
 Book* SortingAuthor(Book l[]) {    //6
 	Book a;
-	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 5; j++) {
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
 			if (strcmp(l[j].author, l[j + 1].author) == 1) {
 				strcpy(a.name, l[j].name);
 				strcpy(a.author, l[j].author);
@@ -130,8 +130,8 @@ Book* SortingAuthor(Book l[]) {    //6
 
 Book* SortingPublishing(Book l[]) {    //7
 	Book a;
-	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 5; j++) {
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
 			if (strcmp(l[j].publishing, l[j + 1].publishing) == -1) {
 				strcpy(a.name, l[j].name);
 				strcpy(a.author, l[j].author);
@@ -155,26 +155,55 @@ Book* SortingPublishing(Book l[]) {    //7
 
 int main() {
 	Book library[5];
-	Fulling(library);
-	PrintLibrary(library);
-	cout << endl;
+	bool choise;
+	cout << "Are you want fulling library ?\n1 - yes\n0 - no\n"; cin >> choise;
+	if (choise == 1) {
+		Fulling(library);
+	}
+	int select;
+	while (choise) {
+		cout << "Select an option\n1 - print library\n2 - change book\n3 - searching for author\n4 - searching for name\n5 - sorting for name\n6 - sorting for author\n7 -sorting for publishing\n8 - leave\n";
+		cin >> select;
+		if (select == 1) {
+			PrintLibrary(library);
+			cout << endl;
+		}
+		if (select == 2) {
+			int index, a; char arr[50];
+			cout << "Chose book that you will change"; cin >> index;
+			cout << "Chose \n1 - name \n2 - author \n3 - publishing \n4 - genre"; cin >> a;
+			cout << "Enter "; cin >> arr;
+			Change(library, index - 1, a, arr);
+		}
+		if (select == 3) {
+			char t[20];
+			int index[11];
+			cout << "Which author's book is searching?"; cin >> t;
+			SearchingAutor(library, t, index);
+			Print(index, library);
+		}
+		if (select == 4) {
+			char t[20];
+			int index[11];
+			cout << "Which author's book is searching?"; cin >> t;
+			SearchingName(library, t, index);
+			Print(index, library);
+		}
+		if (select == 5) {
+			*library = *SortingName(library);
+		}
 
-	/*int index, a; char arr[50];
-	cout << "Chose book that you will change"; cin >> index;
-	cout << "Chose \n1 - name \n2 - author \n3 - publishing \n4 - genre"; cin >> a;
-	cout << "Enter "; cin >> arr;
-	Change(library, index - 1, a, arr);
-	PrintLibrary(library);*/
+		if (select == 6) {
+			*library = *SortingAuthor(library);
+		}
 
-	/*char t[20];
-	int index[11];
-	cout << "Which author's book is searching?"; cin >> t;
-	SearchingAutor(library, t, index);
-	SearchingName(library, t, index);
-	Print(index, library);*/
+		if (select == 7) {
+			*library = *SortingPublishing(library);
+		}	
+		if (select == 8) {
+			break;
+		} 
 
-	*library = *SortingPublishing(library);
-	PrintLibrary(library);
-
+	}
 	return 0;
 }
