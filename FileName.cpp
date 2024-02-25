@@ -103,6 +103,31 @@ Book* SortingName(Book l[]) {       //5
 	return l;
 }
 
+Book* SortingAuthor(Book l[]) {    //6
+	Book a;
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 5; j++) {
+			if (strcmp(l[j].author, l[j + 1].author) == 1) {
+				strcpy(a.name, l[j].name);
+				strcpy(a.author, l[j].author);
+				strcpy(a.publishing, l[j].publishing);
+				strcpy(a.genre, l[j].genre);
+
+				strcpy(l[j].name, l[j + 1].name);
+				strcpy(l[j].author, l[j + 1].author);
+				strcpy(l[j].publishing, l[j + 1].publishing);
+				strcpy(l[j].genre, l[j + 1].genre);
+
+				strcpy(l[j + 1].name, a.name);
+				strcpy(l[j + 1].author, a.author);
+				strcpy(l[j + 1].publishing, a.publishing);
+				strcpy(l[j + 1].genre, a.genre);
+			}
+		}
+	}
+	return l;
+}
+
 int main() {
 	Book library[5];
 	Fulling(library);
@@ -123,7 +148,7 @@ int main() {
 	SearchingName(library, t, index);
 	Print(index, library);*/
 
-	*library = *SortingName(library);
+	*library = *SortingAuthor(library);
 	PrintLibrary(library);
 
 	return 0;
