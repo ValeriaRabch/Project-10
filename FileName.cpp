@@ -68,6 +68,16 @@ void SearchingAutor(Book l[], char author[], int* index) {    //3
 	index[y] = -1;
 }
 
+void SearchingName(Book l[], char author[], int* index) {    //4
+	int  y = 0;
+	for (int i = 0; i < 10; i++) {
+		if (strcmp(l[i].name, author) == 0) {
+			index[y] = i; y++;
+		}
+	}
+	index[y] = -1;
+}
+
 int main() {
 	Book library[5];
 	Fulling(library);
@@ -85,5 +95,6 @@ int main() {
 	int index[11];
 	cout << "Which author's book is searching?"; cin >> t;
 	SearchingAutor(library, t, index);
+	SearchingName(library, t, index);
 	Print(index, library);
 }
