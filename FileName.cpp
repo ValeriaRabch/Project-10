@@ -23,8 +23,41 @@ void Fulling(Book* l) {
 	}
 }
 
+void PrintLibrary(Book l[]) {         //2
+	for (int i = 0; i < 5; i++) {
+		cout << "Name: " << l[i].name << endl;
+		cout << "Author: " << l[i].author << endl;
+		cout << "Publishing houes: " << l[i].publishing << endl;
+		cout << "Genre: " << l[i].genre << endl;
+
+	}
+}
+
+void Change(Book* l, int index, int a, char text[]) {   //1
+	if (a == 1) {
+		strcpy(l[index].name, text);
+	}
+	if (a == 2) {
+		strcpy(l[index].author, text);
+	}
+	if (a == 3) {
+		strcpy(l[index].publishing, text);
+	}
+	if (a == 4) {
+		strcpy(l[index].genre, text);
+	}
+}
+
 int main() {
 	Book library[5];
 	Fulling(library);
+	PrintLibrary(library);
+	cout << endl;
 
+	int index, a; char arr[50];
+	cout << "Chose book that you will change"; cin >> index;
+	cout << "Chose \n1 - name \n2 - author \n3 - publishing \n4 - genre"; cin >> a;
+	cout << "Enter "; cin >> arr;
+	Change(library, index - 1, a, arr);
+	PrintLibrary(library);
 }
